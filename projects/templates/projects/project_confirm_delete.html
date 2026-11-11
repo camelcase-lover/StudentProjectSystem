@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Delete - Student Project Management System{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 550px; margin: 0 auto;">
+    <h2 style="color: #dc2626; margin-bottom: 16px;">Confirm Deletion</h2>
+    
+    <p style="margin-bottom: 16px; font-size: 1.05rem;">
+        Are you sure you want to permanently delete the project:
+    </p>
+
+    <div style="background-color: #fef2f2; border-left: 4px solid #dc2626; padding: 16px; margin-bottom: 24px; border-radius: 4px;">
+        <h3 style="color: #991b1b; margin-bottom: 8px;">{{ project.title }}</h3>
+        <p><strong>Student:</strong> {{ project.student_name }} ({{ project.registration_number }})</p>
+        <p><strong>Department:</strong> {{ project.department.name }}</p>
+    </div>
+
+    <!-- Delete Confirmation Form (Question 5d) -->
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Yes, Delete Project</button>
+            <a href="{% url 'project_list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

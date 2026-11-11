@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Student Project Management System{% endblock %}
+
+{% block content %}
+<div class="card welcome-card">
+    <h1>Welcome to the Student Project Management System</h1>
+    <p>A centralized platform to manage, track, and review university student projects across departments.</p>
+    <div style="display: flex; justify-content: center; gap: 16px;">
+        <a href="{% url 'project_list' %}" class="btn btn-primary">View All Projects</a>
+        <a href="{% url 'project_create' %}" class="btn btn-success">Submit a Project</a>
+    </div>
+</div>
+{% endblock %}

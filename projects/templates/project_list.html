@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - Student Project Management System{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="search-container">
+        <h2>Registered Student Projects</h2>
+        
+        <!-- Search Functionality (Question 7a) -->
+        <form method="GET" action="{% url 'project_list' %}" class="search-form">
+            <input 
+                type="text" 
+                name="q" 
+                value="{{ query }}" 
+                placeholder="Search projects by title..." 
+                class="search-input"
+            >
+            <button type="submit" class="btn btn-primary">Search</button>
+            {% if query %}
+                <a href="{% url 'project_list' %}" class="btn btn-secondary">Reset</a>
+            {% endif %}
+        </form>
+    </div>
+
+    {% if query %}
+        <p style="margin-bottom: 12px; color: #4b5563;">
+            Showing results for: <strong>"{{ query }}"</strong> ({{ projects|length }} found)
+        </p>
+    {% endif %}
+
+    <!-- Projects Table (Question 4c, 4d, 7b) -->
+    <div class="table-responsive">
+        <table class="project-table">
+            <thead>
+                <tr>
+                    <th>Project Title</th>
+                    <th>Student Name</th>
+                    <th>Registration Number</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Django Template Variables and For Loop (Question 4d) -->
+                {% for project in projects %}
+                    <tr>
+                        <td><strong>{{ project.title }}</strong></td>
+                        <td>{{ project.student_name }}</td>
+                        <td>{{ project.registration_number }}</td>
+                        <td>{{ project.department.name }}</td>
+                        <td>
+                            <a href="{% url 'project_update' project.pk %}" class="btn btn-sm btn-secondary">Edit</a>
+                            <a href="{% url 'project_delete' project.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 24px; color: #6b7280;">
+                            No projects found. <a href="{% url 'project_create' %}">Add the first project</a>.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

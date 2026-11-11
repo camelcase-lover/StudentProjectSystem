@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Student Project Management System{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 450px; margin: 40px auto;">
+    <h2 style="color: #1e3a8a; margin-bottom: 20px; text-align: center;">User Login</h2>
+
+    {% if form.non_field_errors %}
+        <div style="background-color: #fef2f2; border: 1px solid #f87171; color: #991b1b; padding: 12px; border-radius: 6px; margin-bottom: 16px;">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Login Form (Question 6a) -->
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_username">Username</label>
+            <input type="text" name="username" autofocus required id="id_username" class="form-control" placeholder="Enter username">
+        </div>
+
+        <div class="form-group">
+            <label for="id_password">Password</label>
+            <input type="password" name="password" required id="id_password" class="form-control" placeholder="Enter password">
+        </div>
+
+        <div class="form-actions" style="margin-top: 20px;">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Log In</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
