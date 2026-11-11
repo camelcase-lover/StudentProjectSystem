@@ -262,27 +262,15 @@ All unit and functional integration tests pass successfully with 100% compliance
 ## Quick Setup & Running Instructions
 
 ```bash
-# 1. Clone repository
-git clone <YOUR_REPOSITORY_URL>
-cd <REPOSITORY_FOLDER>
-
-# 2. Create and activate virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Run migrations (already applied if using provided db.sqlite3)
+git clone git@github.com:camelcase-lover/StudentProjectSystem.git
 cd StudentProjectSystem
-python manage.py migrate
-
-# (Optional: load sample seed data if starting fresh)
-python manage.py loaddata seed_data.json
-
-# 5. Start development server
+python3 -m venv venv
+source venv/bin/activate       # (On Windows: venv\Scripts\activate)
+pip install -r requirements.txt
 python manage.py runserver
 ```
+
+*(Alternatively via HTTPS: `git clone https://github.com/camelcase-lover/StudentProjectSystem.git`)*
 
 Open `http://127.0.0.1:8000/` in your browser.
 
